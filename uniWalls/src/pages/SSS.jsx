@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 function SSS() {
   return (
@@ -70,14 +71,11 @@ function SSS() {
         </div>
 
         <p className="text-sm text-center mt-12 text-gray-500">
-          Sorunuzun cevabını bulamadınız mı?{" "}
-          <a
-            href="bizesorun.html"
-            className="text-[#88b7a5] font-medium hover:underline"
-          >
-            Bize sorun
-          </a>
-        </p>
+      Sorunuzun cevabını bulamadınız mı?{" "}
+      <Link to="/bizesorun" className="text-[#88b7a5] font-medium hover:underline">
+        Bize sorun
+      </Link>
+    </p>
       </div>
 
      
