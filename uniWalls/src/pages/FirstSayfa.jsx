@@ -1,11 +1,22 @@
-// pages/FirstSayfa.js
+// pages/FirstSayfa.jsx
 import React from "react";
+import HeaderFirst from "../components/HeaderFirst";
+import Footer from "../components/Footer";
+import LeftSidebar from "../components/LeftSidebar";
+import RightSidebar from "../components/RightSidebar";
+import MainContent from "../components/MainContent"; // veya başka bir içerik bileşeni
 
-const FirstSayfa = () => {
+const FirstSayfa = ({ setGirisAcik, setKayitAcik }) => {
   return (
-    <div className="flex-grow flex p-4 gap-4 justify-center items-center text-2xl font-semibold">
-      First Sayfa İçeriği Burada
-    </div>
+    <>
+      <HeaderFirst setGirisAcik={setGirisAcik} setKayitAcik={setKayitAcik} />
+      <div className="flex-grow flex p-4 gap-4">
+        <LeftSidebar />
+        <MainContent />
+        <RightSidebar />
+      </div>
+      <Footer />
+    </>
   );
 };
 

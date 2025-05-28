@@ -1,15 +1,20 @@
 import React from "react";
 
-const RightSidebar = () => {
+const RightSidebar = ({ setYaziYazAcik }) => {
   return (
-    <div className="w-1/4">
+    <div className="w-1/4 p-4">
       <div className="flex justify-between items-center">
         <input
           type="text"
           placeholder="yaz..."
           className="border-b-2 border-[#1b475d] bg-transparent w-3/4 focus:outline-none"
         />
-        <button className="text-3xl text-[#1b475d] mr-16">+</button>
+        <button
+          className="text-3xl text-[#1b475d] mr-16"
+          onClick={() => setYaziYazAcik(true)}
+        >
+          +
+        </button>
       </div>
       <h2 className="text-xl font-bold mt-4" style={{ color: "#1b475d" }}>
         Popüler Başlıklar
@@ -23,6 +28,6 @@ const RightSidebar = () => {
       </ul>
     </div>
   );
-}
+};
 
 export default RightSidebar;

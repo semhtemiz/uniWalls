@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 function GirisYap({ setGirisAcik }) {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-4">
       <div>
@@ -13,8 +16,21 @@ function GirisYap({ setGirisAcik }) {
       </div>
       <a href="#" className="text-blue-500 text-sm">Şifremi unuttum?</a>
       <div className="flex justify-end gap-4">
-        <button onClick={() => setGirisAcik(false)} className="px-4 py-2 bg-blue-500 text-white rounded">Giriş</button>
-        <button onClick={() => setGirisAcik(false)} className="px-4 py-2 border rounded">Kapat</button>
+        <button
+          onClick={() => {
+            setGirisAcik(false);
+            navigate("/anasayfa");
+          }}
+          className="px-4 py-2 bg-blue-500 text-white rounded"
+        >
+          Giriş
+        </button>
+        <button
+          onClick={() => setGirisAcik(false)}
+          className="px-4 py-2 border rounded"
+        >
+          Kapat
+        </button>
       </div>
     </div>
   );
