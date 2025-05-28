@@ -57,12 +57,7 @@ const KullanimKosullari = () => {
         </p>
       </div>
 
-      {/* Sağ Alt Soru Butonu */}
-      <div className="fixed bottom-24 right-12 px-4 py-2 rounded-full cursor-pointer transition-colors">
-        <a href="mailto:support.uw@gmail.com">
-          <img src="son_pictures/thumbnail_bize_ulasin_logo.png" alt="Bize Ulaşın" className="h-16 w-auto cursor-pointer" />
-        </a>
-      </div>
+     
     </div>
   );
 };

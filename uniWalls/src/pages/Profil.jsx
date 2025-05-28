@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";  // Link'i import et
 import kullanici from "../son_pictures/kullanici_logo.png";
 
 function Profil() {
@@ -22,10 +23,7 @@ function Profil() {
       </section>
 
       {/* Beğeni ve Profili Düzenle */}
-      <section
-        id="istatistik"
-        className="flex items-center gap-10 mb-6 ml-64"
-      >
+      <section id="istatistik" className="flex items-center gap-10 mb-6 ml-64">
         <div id="begeni" className="flex items-center gap-3 text-2xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,12 +41,14 @@ function Profil() {
           </svg>
           <span className="text-red-500 ml-2">564</span>
         </div>
-        <a
-          href="profilduzenle.html"
+
+        {/* Burada Link kullanıyoruz */}
+        <Link
+          to="/profilduzenle"
           className="text-black text-lg font-semibold no-underline hover:text-gray-700 transition-colors ml-12"
         >
           Profili Düzenle
-        </a>
+        </Link>
       </section>
 
       {/* Yorumlar */}
@@ -68,11 +68,8 @@ function Profil() {
           </p>
         </article>
       </section>
-
-      
     </main>
   );
-
-  
 }
+
 export default Profil;

@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <div className="flex items-center justify-between p-4 border-b">
       <div className="flex items-center gap-2">
-        <Link to="/first">
+        <Link to="/anasayfa">
           <img src={logo} alt="Logo" className="h-16 w-auto" />
         </Link>
         <span className="text-sm italic"></span>
@@ -59,7 +59,7 @@ const Header = () => {
         </div>
 
         <span>
-          <a href="#">
+          <a href="/mesajlasma">
             <img src={mesaj} alt="Mesaj" className="h-16 w-auto" />
           </a>
         </span>
