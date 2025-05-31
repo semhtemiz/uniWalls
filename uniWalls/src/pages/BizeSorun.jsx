@@ -1,4 +1,7 @@
 import React from "react";
+import gonder from "../son_pictures/gonder_logo.png";
+import kisiIcon from "../son_pictures/kişi.png";
+
 
 function BizeSorun() {
   return (
@@ -9,7 +12,7 @@ function BizeSorun() {
         className="flex items-center gap-6 mb-6"
       >
         <img
-          src="/son_pictures/kişi.png"
+          src={kisiIcon}
           alt="Profil Fotoğrafı"
           className="w-20 h-20 object-cover"
         />
@@ -74,7 +77,7 @@ function BizeSorun() {
       <div className="mb-6 text-center">
         <a href="#" className="inline-block">
           <img
-            src="/son_pictures/gonder_logo.png"
+            src={gonder}
             alt="Gönder"
             className="h-12 w-auto cursor-pointer hover:opacity-80 transition-opacity duration-300"
           />

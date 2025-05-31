@@ -10,11 +10,13 @@ const RightSidebar = ({ setYaziYazAcik }) => {
           className="border-b-2 border-[#1b475d] bg-transparent w-3/4 focus:outline-none"
         />
         <button
-          className="text-3xl text-[#1b475d] mr-16"
-          onClick={() => setYaziYazAcik(true)}
-        >
-          +
-        </button>
+  onClick={() => setYaziYazAcik(true)}
+  className="text-white rounded hover:brightness-110"
+  style={{ backgroundColor: "#1b475d", padding: "0.5rem 1rem" }}
+>
+  +
+</button>
+
       </div>
       <h2 className="text-xl font-bold mt-4" style={{ color: "#1b475d" }}>
         Popüler Başlıklar

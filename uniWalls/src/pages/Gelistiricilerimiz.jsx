@@ -14,7 +14,7 @@ import React from "react";
       {/* Ana İçerik: Geliştirici Kartları */}
       <div className="max-w-5xl mx-auto py-12 px-6 flex-grow">
         <h1 className="text-4xl font-bold mb-10 text-center">
-          <span className="text-[#ff6b6b]">Geliştirici</span>
+          <span className="text-[#ff6b6b]">Geliştirici</span>{" "}
           <span className="text-[#223344]">Ekibimiz</span>
         </h1>
 

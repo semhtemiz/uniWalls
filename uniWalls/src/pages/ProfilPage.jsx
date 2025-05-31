@@ -1,4 +1,5 @@
 import React from "react";
+import kullanici from "../son_pictures/kişi.png";
 
 function ProfilPage() {
   return (
@@ -9,7 +10,7 @@ function ProfilPage() {
         className="flex items-center gap-6 mb-6"
       >
         <img
-          src="/son_pictures/kişi.png"
+          src={kullanici}
           alt="Profil Fotoğrafı"
           className="w-20 h-20 object-cover"
         />

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";  // Link'i import et
-import kullanici from "../son_pictures/kullanici_logo.png";
+import kullanici from "../son_pictures/kişi.png";
 
 function Profil() {
   return (
@@ -44,11 +44,12 @@ function Profil() {
 
         {/* Burada Link kullanıyoruz */}
         <Link
-          to="/profilduzenle"
-          className="text-black text-lg font-semibold no-underline hover:text-gray-700 transition-colors ml-12"
-        >
-          Profili Düzenle
-        </Link>
+  to="/profilduzenle"
+  className="text-black text-lg font-semibold no-underline hover:text-gray-700 transition-colors ml-12 bg-[#ff7c5c] px-3 py-1 rounded"
+>
+  Profili Düzenle
+</Link>
+
       </section>
 
       {/* Yorumlar */}

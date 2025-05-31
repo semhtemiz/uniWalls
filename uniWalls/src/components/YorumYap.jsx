@@ -12,67 +12,37 @@ function YorumYap({
 }) {
   return (
     <div
-      className="form-kutusu"
-      style={{
-        backgroundColor: "#ff7c5c",
-        backgroundSize: "100% 100%",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        color: "#1b475d",
-        padding: "20px",
-        borderRadius: "8px",
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: 1000,
-        width: "400px",
-        boxShadow: "0 0 15px rgba(0,0,0,0.3)",
-      }}
+      className="fixed top-1/2 left-1/2 w-96 bg-[#ff7c5c] text-[#1b475d] p-5 rounded-lg shadow-lg
+                 transform -translate-x-1/2 -translate-y-1/2 z-50"
     >
-      <label>Başlık</label>
+      <label className="block mb-1 font-semibold">Başlık</label>
       <input
         type="text"
         placeholder="Yazınızın başlığı"
-        style={{
-          width: "90%",
-          padding: "10px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
-        }}
+        className="w-[90%] p-2 rounded border border-gray-300 mb-4"
       />
-      <label>İçerik</label>
+
+      <label className="block mb-1 font-semibold">İçerik</label>
       <textarea
         placeholder="Buraya yazınızı yazabilirsiniz..."
         rows="5"
-        style={{
-          width: "90%",
-          padding: "10px",
-          borderRadius: "5px",
-          border: "1px solid #ccc",
-        }}
+        className="w-[90%] p-2 rounded border border-gray-300"
       />
-      <div
-        style={{
-          marginTop: "10px",
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-        }}
-      >
+
+      <div className="flex items-center gap-2 mt-3">
         <img
           src={dosyaEkleIcon}
           alt="Dosya Ekle"
-          style={{ width: "24px", height: "24px", cursor: "pointer" }}
+          className="w-7 h-7 cursor-pointer"
           onClick={() => fileInputRef.current.click()}
         />
-        <span style={{ fontSize: "10px", color: "#1b475d" }}>
-          *yazın herhangi bir kitleyi hedef almamalı ve küfür içermemeli, aksi
-          halde wall’dan kaldırılacağını unutma!
+        <span className="text-xs text-[#1b475d]">
+          *yazın herhangi bir kitleyi hedef almamalı ve küfür içermemeli, aksi halde
+          wall’dan kaldırılacağını unutma!
         </span>
         <input
           type="file"
-          style={{ display: "none" }}
+          className="hidden"
           ref={fileInputRef}
           onChange={(e) => {
             const selectedFile = e.target.files[0];
@@ -83,18 +53,11 @@ function YorumYap({
         />
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "10px",
-          marginTop: "10px",
-        }}
-      >
+      <div className="flex items-center gap-2 mt-3">
         <img
           src={kimlikIcon}
           alt="Hesap Ayarı"
-          style={{ width: "24px", height: "24px", cursor: "pointer" }}
+          className="w-7 h-7 cursor-pointer"
           onClick={() => setComboGorunur(!comboGorunur)}
         />
 
@@ -105,47 +68,28 @@ function YorumYap({
               setHesapGorunurluk(e.target.value);
               setComboGorunur(false);
             }}
-            style={{
-              padding: "4px",
-              borderRadius: "4px",
-              backgroundColor: "#fff",
-              border: "1px solid #ccc",
-            }}
+            className="p-1 rounded bg-white border border-gray-300"
           >
             <option value="açık">Hesap Adı Açık</option>
             <option value="gizli">Hesap Adı Gizli</option>
           </select>
         )}
 
-        <p style={{ fontSize: "12px", color: "#444", margin: 0 }}>
+        <p className="text-xs text-gray-700 m-0">
           Seçilen Görünürlük: {hesapGorunurluk === "açık" ? "Herkese açık" : "Gizli"}
         </p>
       </div>
 
-      <div className="buton-grubu" style={{ marginTop: "20px" }}>
+      <div className="mt-5 flex">
         <button
           onClick={() => setYaziYazAcik(false)}
-          style={{
-            marginRight: "10px",
-            padding: "8px 16px",
-            borderRadius: "4px",
-            backgroundColor: "#1b475d",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-          }}
+          className="mr-2 px-4 py-2 rounded bg-[#1b475d] text-white border-none cursor-pointer"
         >
           Paylaş
         </button>
         <button
           onClick={() => setYaziYazAcik(false)}
-          style={{
-            padding: "8px 16px",
-            borderRadius: "4px",
-            backgroundColor: "#ccc",
-            border: "none",
-            cursor: "pointer",
-          }}
+          className="px-4 py-2 rounded bg-gray-300 border-none cursor-pointer"
         >
           Kapat
         </button>

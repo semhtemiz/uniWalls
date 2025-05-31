@@ -1,17 +1,19 @@
 import React from "react";
+import arkaplan from "../son_pictures/arkaplan.jpg";
 
 function PrivacyPolicy() {
   return (
     <div className="text-[#223344] font-sans min-h-screen" style={{
-      backgroundImage: "url('src/son_pictures/arkaplan.jpg')",
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat",
-      backgroundAttachment: "fixed",
-      backgroundColor: "#f2f9f6"
-    }}>
+  backgroundImage: `url(${arkaplan})`,
+  backgroundSize: "cover",
+  backgroundRepeat: "no-repeat",
+  backgroundAttachment: "fixed",
+  backgroundColor: "#f2f9f6"
+}}
+>
       <div className="max-w-4xl mx-auto py-12 px-6">
         <h1 className="text-4xl font-bold mb-10 text-center">
-          <span className="text-[#223344]">Gizlilik</span>
+          <span className="text-[#223344]">Gizlilik</span>{" "}
           <span className="text-[#ff6b6b]">Politikamız</span>
         </h1>
 

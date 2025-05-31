@@ -27,9 +27,16 @@ const Engellenenler = () => {
               alt="Kullanıcı"
               className="w-10 h-10 rounded-full"
             />
-            <span className="text-md font-medium text-gray-800">
+            <span className="text-md font-medium text-gray-800 flex-grow">
               {kullanici}
             </span>
+            <button
+              className="px-3 py-1 rounded text-white font-semibold"
+              style={{ backgroundColor: "#ff7c5c" }}
+              onClick={() => alert(`${kullanici} engeli kaldırıldı!`)}
+            >
+              Engeli Kaldır
+            </button>
           </div>
         ))}
       </div>
