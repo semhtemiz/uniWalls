@@ -10,18 +10,8 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    fetch("http://localhost:5000/api/cikis", {
-      method: "POST",
-      credentials: "include",
-    })
-      .then(res => res.json())
-      .then(data => {
-        alert(data.message);
-        navigate('/giris'); // React Router ile yönlendir
-      })
-      .catch(() => {
-        alert("Sunucu hatası, tekrar deneyin.");
-      });
+    localStorage.removeItem("token");
+    navigate("/first");
   };
 
   return (
