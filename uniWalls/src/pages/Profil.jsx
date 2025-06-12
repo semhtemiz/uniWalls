@@ -1,8 +1,41 @@
-import React from "react";
-import { Link } from "react-router-dom";  // Link'i import et
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import kullanici from "../son_pictures/kişi.png";
 
 function Profil() {
+  const [user, setUser] = useState(null);
+  const [universiteler, setUniversiteler] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await fetch("http://localhost:5000/api/profile", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data);
+        }
+      } catch {}
+    };
+    const fetchUniversiteler = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/universiteler");
+        if (res.ok) {
+          setUniversiteler(await res.json());
+        }
+      } catch {}
+    };
+    Promise.all([fetchProfile(), fetchUniversiteler()]).then(() => setLoading(false));
+  }, []);
+
+  if (loading) return <div className="ml-24 mt-8">Yükleniyor...</div>;
+  if (!user) return <div className="ml-24 mt-8 text-red-600">Kullanıcı bilgileri alınamadı.</div>;
+
+  const universite = universiteler.find(u => u.id === user.universite_id)?.ad || "-";
+
   return (
     <main className="flex-grow">
       {/* Kullanıcı Bilgileri */}
@@ -16,9 +49,9 @@ function Profil() {
           className="w-20 h-20 object-cover"
         />
         <div className="abril text-left text-[#222]">
-          <h2 className="text-2xl">Kullanıcı Adı</h2>
-          <p className="text-xl">Ad Soyad</p>
-          <h3 className="text-xl">Üniversite Adı</h3>
+          <h2 className="text-2xl">{user.name}</h2>
+          <p className="text-xl">{user.eposta}</p>
+          <h3 className="text-xl">{universite}</h3>
         </div>
       </section>
 
@@ -44,12 +77,11 @@ function Profil() {
 
         {/* Burada Link kullanıyoruz */}
         <Link
-  to="/profilduzenle"
-  className="text-black text-lg font-semibold no-underline hover:text-gray-700 transition-colors ml-12 bg-[#ff7c5c] px-3 py-1 rounded"
->
-  Profili Düzenle
-</Link>
-
+          to="/profilduzenle"
+          className="text-black text-lg font-semibold no-underline hover:text-gray-700 transition-colors ml-12 bg-[#ff7c5c] px-3 py-1 rounded"
+        >
+          Profili Düzenle
+        </Link>
       </section>
 
       {/* Yorumlar */}

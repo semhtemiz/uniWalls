@@ -3,8 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 function GirisYap({ setGirisAcik }) {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: '', password: '' });
+  const [formData, setFormData] = useState({ eposta: '', password: '' });
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData(prev => ({
@@ -15,6 +16,7 @@ function GirisYap({ setGirisAcik }) {
 
   const handleSubmit = async () => {
     setError(null);
+    setLoading(true);
     try {
       const response = await fetch('http://localhost:5000/api/giris', {
         method: 'POST',
@@ -24,15 +26,18 @@ function GirisYap({ setGirisAcik }) {
 
       if (response.ok) {
         const result = await response.json();
+        localStorage.setItem("token", result.token);
         alert(result.message);
         setGirisAcik(false);
         navigate("/anasayfa");
       } else {
         const errData = await response.json();
-        setError(errData.error || "Giriş başarısız");
+        setError(errData.error || (errData.errors && errData.errors[0]?.msg) || "Giriş başarısız");
       }
     } catch (err) {
       setError("Sunucuya bağlanırken hata oluştu");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -42,11 +47,11 @@ function GirisYap({ setGirisAcik }) {
       <div>
         <label>Kullanıcı Adı</label>
         <input
-          type="text"
-          name="name"
-          placeholder="Kullanıcı Adı"
+          type="email"
+          name="eposta"
+          placeholder="E-posta"
           className="w-full p-2 border rounded"
-          value={formData.name}
+          value={formData.eposta}
           onChange={handleChange}
         />
       </div>
@@ -68,12 +73,14 @@ function GirisYap({ setGirisAcik }) {
           onClick={handleSubmit}
           className="px-4 py-2 bg-blue-500 text-white rounded"
           style={{ backgroundColor: '#ff7c5c'}}
+          disabled={loading}
         >
-          Giriş
+          {loading ? 'Yükleniyor...' : 'Giriş'}
         </button>
         <button
           onClick={() => setGirisAcik(false)}
           className="px-4 py-2 border rounded"
+          disabled={loading}
         >
           Kapat
         </button>

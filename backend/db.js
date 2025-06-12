@@ -5,7 +5,8 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'reacticin_veritabani'
+  database: 'uniwalls_db',
+  port : 3306
 });
 
 module.exports = db;
