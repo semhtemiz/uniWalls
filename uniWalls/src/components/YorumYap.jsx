@@ -9,6 +9,7 @@ function YorumYap({
   setComboGorunur,
   hesapGorunurluk,
   setHesapGorunurluk,
+  onYorumEklendi,
 }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -16,33 +17,41 @@ function YorumYap({
   const [error, setError] = useState(null);
 
   const handleSubmit = async () => {
-    setError(null);
-    const formData = new FormData();
-    formData.append("content", content);
-    if (file) {
-      formData.append("image", file);
-    }
+  setError(null);
+  const formData = new FormData();
+  formData.append("title", title);
+formData.append("content", content);
+if (file) {
+  formData.append("image", file);
+}
 
-    try {
-      const response = await fetch("http://localhost:5000/api/yorumlar", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: formData,
-      });
 
-      if (response.ok) {
-        alert("Yorum başarıyla eklendi!");
-        setYaziYazAcik(false);
-      } else {
-        const errData = await response.json();
-        setError(errData.error || "Yorum eklenirken bir hata oluştu");
+  try {
+    const response = await fetch("http://localhost:5000/api/yorumlar", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: formData,
+    });
+
+    if (response.ok) {
+      const yeniYorum = await response.json();
+      alert("Yorum başarıyla eklendi!");
+      setYaziYazAcik(false);
+
+      if (onYorumEklendi) {
+        onYorumEklendi(yeniYorum);
       }
-    } catch (err) {
-      setError("Sunucuya bağlanırken hata oluştu");
+    } else {
+      const errData = await response.json();
+      setError(errData.error || "Yorum eklenirken bir hata oluştu");
     }
-  };
+  } catch (err) {
+    setError("Sunucuya bağlanırken hata oluştu");
+  }
+};
+
 
   return (
     <div
@@ -75,8 +84,7 @@ function YorumYap({
           onClick={() => fileInputRef.current.click()}
         />
         <span className="text-xs text-[#1b475d]">
-          *yazın herhangi bir kitleyi hedef almamalı ve küfür içermemeli, aksi halde
-          wall'dan kaldırılacağını unutma!
+          *Yazın herhangi bir kitleyi hedef almamalı ve küfür içermemeli, aksi halde wall'dan kaldırılacağını unutma!
         </span>
         <input
           type="file"

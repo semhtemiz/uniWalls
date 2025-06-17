@@ -429,19 +429,26 @@ app.post('/api/verify-email', async (req, res) => {
 });
 
 // Yorum ekleme
+// Yorum ekleme
 app.post('/api/yorumlar', authenticateToken, upload.single('image'), async (req, res) => {
   try {
-    const { content } = req.body;
+    // 1. req.body'den 'title'ı alın
+    const { content, title } = req.body; 
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
-    const sql = "INSERT INTO yorumlar (user_id, content, image_url) VALUES (?, ?, ?)";
-    db.query(sql, [req.user.id, content, imageUrl], (err, result) => {
+    // 2. INSERT sorgusunu 'title' sütununu içerecek şekilde güncelleyin
+    //    'title' sütununu hem sütun adları listesine hem de VALUES listesine eklemelisiniz.
+    const sql = "INSERT INTO yorumlar (user_id, content, image_url, title) VALUES (?, ?, ?, ?)"; 
+    
+    // 3. Değerler dizisine 'title'ı ekleyin
+    db.query(sql, [req.user.id, content, imageUrl, title], (err, result) => { 
       if (err) {
         console.error('Yorum ekleme hatası:', err);
         return res.status(500).json({ error: 'Veritabanı hatası' });
       }
 
-      // Yorumu getir
+      // Yorum başarıyla eklendikten sonra, eklenen yorumu geri döndürürken de
+      // 'title'ın seçildiğinden emin olun (y.* zaten tüm sütunları seçer, sorun yok)
       const getCommentSql = `
         SELECT y.*, u.name as user_name, u.universite_id 
         FROM yorumlar y 
@@ -450,7 +457,7 @@ app.post('/api/yorumlar', authenticateToken, upload.single('image'), async (req,
       `;
       db.query(getCommentSql, [result.insertId], (err, results) => {
         if (err) {
-          console.error('Yorum getirme hatası:', err);
+          console.error('Yorumu geri getirme hatası:', err); // Daha spesifik hata mesajı
           return res.status(500).json({ error: 'Veritabanı hatası' });
         }
         res.json(results[0]);
