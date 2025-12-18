@@ -11,7 +11,7 @@
   const fs = require('fs');
   const axios = require("axios");
   
-  const DEEPSEEK_API_KEY = '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';
+  
 
 
 
